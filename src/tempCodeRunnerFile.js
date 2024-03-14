@@ -1,0 +1,1 @@
+gameBoard.receiveAttack(0, 1);
