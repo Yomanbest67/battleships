@@ -68,16 +68,16 @@ export default class Gameboard {
   }
 }
 
-const gameBoard = new Gameboard(10);
-const ship = new Ship(3);
-const newShip = new Ship(2);
+// const gameBoard = new Gameboard(10);
+// const ship = new Ship(3);
+// const newShip = new Ship(2);
 
-gameBoard.placeShip(ship, [0, 1], [0, 3]);
+// gameBoard.placeShip(ship, [0, 1], [0, 3]);
 
-gameBoard.placeShip(newShip, [3, 1], [3, 2]);
+// gameBoard.placeShip(newShip, [3, 1], [3, 2]);
 
-gameBoard.receiveAttack(5, 3);
+// gameBoard.receiveAttack(5, 3);
 
-console.log(gameBoard.receiveAttack(0, 1));
+// console.log(gameBoard.receiveAttack(0, 1));
 
-console.table(gameBoard.board);
+// console.table(gameBoard.board);
