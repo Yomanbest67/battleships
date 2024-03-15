@@ -10,6 +10,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
 }
 
 .playerHalf {
@@ -25,13 +26,15 @@
     justify-content: center;
 }
 
-.playerBoard {
+.playerBoard,
+.enemyBoard {
     display: flex;
     flex-direction: column;
     border: 1px solid black;
 }
 
-.playerBoard .line {
+.playerBoard .line,
+.enemyBoard .line {
     display: flex;
 }
 

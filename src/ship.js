@@ -8,7 +8,9 @@ export default class Ship {
   hit() {
     this.health--;
 
-    if (this.health === 0) return this.sink();
+    if (this.health === 0) this.sink();
+
+    return 'X';
   }
 
   sink() {

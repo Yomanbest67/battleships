@@ -1,7 +1,13 @@
 import { driver } from './index.js';
+import Ship from './ship.js';
 
-function displayBoard(board) {
-  const domPBoard = document.querySelector('.playerBoard');
+function displayBoard(board, enemy = false) {
+  let domPBoard = document.querySelector('.playerBoard');
+
+  if (enemy) {
+    domPBoard = document.querySelector('.enemyBoard');
+  }
+
   while (domPBoard.firstChild) {
     domPBoard.removeChild(domPBoard.firstChild);
   }

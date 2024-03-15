@@ -1,12 +1,18 @@
 import Gameboard from './gameboard';
+import { createEnemyBoard } from './pcEnemy.js';
 import css from './style.css';
 import { displayBoard, playerMessage } from './DOM.js';
 import Ship from './ship.js';
+import { setTurn } from './turnController.js';
 
+let playerGameboard = new Gameboard(10);
+let enemyBoard = createEnemyBoard(10);
 driver();
 
 function driver() {
-  const playerGameboard = new Gameboard(10);
+  playerGameboard = new Gameboard(10);
+  enemyBoard = createEnemyBoard(10);
+  displayBoard(enemyBoard, true);
   setupGame(playerGameboard);
 }
 
@@ -36,7 +42,7 @@ function setupGame(
       Current Ship: Length ${currentShip.length}`,
     );
 
-    const squares = document.querySelectorAll('.square');
+    const squares = document.querySelectorAll('.playerBoard > .line > .square');
 
     for (const square of squares) {
       square.addEventListener('click', () => setShipValues(square));
@@ -70,6 +76,7 @@ function setupGame(
 
 function startGame() {
   playerMessage('Game Start! Your turn!');
+  setTurn(enemyBoard);
 }
 
 (function resetButton() {

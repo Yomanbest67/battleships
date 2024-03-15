@@ -25,7 +25,7 @@ export default class Gameboard {
         this.board[x][y] = 'O';
         return 'miss';
       default:
-        location.hit();
+        this.board[x][y].hit();
         this.board[x][y] = 'X';
         return 'hit';
     }
