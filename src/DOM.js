@@ -33,7 +33,9 @@ function displayBoard(board, enemy = false) {
           boardSquare.textContent = 'O';
           break;
         default:
-          boardSquare.style.backgroundColor = 'blue';
+          if (enemy) {
+            /* Do Nothing */
+          } else boardSquare.style.backgroundColor = 'blue';
       }
 
       boardLine.appendChild(boardSquare);

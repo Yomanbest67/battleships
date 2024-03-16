@@ -1,6 +1,7 @@
 import { randomNum } from './pcEnemy.js';
 import { Gameboard } from './gameboard.js';
-import { displayBoard } from './DOM.js';
+import { displayBoard, playerMessage } from './DOM.js';
+import Ship from './ship.js';
 
 let turn = null;
 
@@ -47,15 +48,29 @@ function setFunctionality(enemyBoard, playerBoard) {
 
     playerBoard.receiveAttack(attackSpot[0], attackSpot[1]);
 
-    setTurn(enemyBoard, playerBoard);
+    if (checkVictory(playerBoard)) playerMessage('You Lost!');
+    else setTurn(enemyBoard, playerBoard);
   }
 
   const playerFunction = (square) => {
     if (typeof enemyBoard.board[square.id[1]][square.id[4]] !== 'string') {
       enemyBoard.receiveAttack(square.id[1], square.id[4]);
-      setTurn(enemyBoard, playerBoard);
+
+      if (checkVictory(enemyBoard)) playerMessage('You Win!');
+      else setTurn(enemyBoard, playerBoard);
     }
   };
+}
+
+function checkVictory(board) {
+  let count = 0;
+  for (const line of board.board) {
+    if (line.some((arr) => arr instanceof Ship)) count++;
+  }
+
+  if (count === 0) return true;
+
+  return false;
 }
 
 export { setTurn };

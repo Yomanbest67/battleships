@@ -1,17 +1,19 @@
 import Gameboard from './gameboard';
-import { createEnemyBoard, randomNum } from './pcEnemy.js';
+import { createEnemyBoard, randomNum, createEnemyBoard2 } from './pcEnemy.js';
 import css from './style.css';
 import { displayBoard, playerMessage } from './DOM.js';
 import Ship from './ship.js';
 import { setTurn } from './turnController.js';
 
 let playerGameboard = new Gameboard(10);
-let enemyBoard = createEnemyBoard(10);
+let enemyBoard = new Gameboard(10);
 driver();
 
 function driver() {
   playerGameboard = new Gameboard(10);
-  enemyBoard = createEnemyBoard(10);
+  enemyBoard = new Gameboard(10);
+  createEnemyBoard2(enemyBoard);
+
   displayBoard(enemyBoard, true);
   setupGame(playerGameboard);
 }
