@@ -30,14 +30,13 @@ function createEnemyBoard(size) {
       // Empty
     }
   }
-
-  function randomNum(limit) {
-    return Math.floor(Math.random() * limit);
-  }
-
   return enemyBoard;
+}
+
+function randomNum(limit) {
+  return Math.floor(Math.random() * limit);
 }
 
 function displayEnemyBoard(board) {}
 
-export { createEnemyBoard, displayEnemyBoard };
+export { createEnemyBoard, displayEnemyBoard, randomNum };

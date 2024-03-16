@@ -2,6 +2,7 @@ import Ship from './ship.js';
 
 export default class Gameboard {
   constructor(size) {
+    this.size = size;
     this.rows = size;
     this.columns = size;
     this.board = this.makeBoard();
