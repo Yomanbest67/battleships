@@ -26,6 +26,12 @@ function displayBoard(board, enemy = false) {
         case null:
           //   boardSquare.textContent = '0';
           break;
+        case 'X':
+          boardSquare.textContent = 'X';
+          break;
+        case 'O':
+          boardSquare.textContent = 'O';
+          break;
         default:
           boardSquare.style.backgroundColor = 'blue';
       }

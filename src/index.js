@@ -19,6 +19,7 @@ function driver() {
 function randomDriver() {
   displayBoard(playerGameboard);
   displayBoard(enemyBoard, true);
+
   startGame(enemyBoard, playerGameboard);
 }
 
@@ -82,6 +83,7 @@ function setupGame(
 
 function startGame(enemyBoard, gameBoard) {
   playerMessage('Game Start! Your turn!');
+
   setTurn(enemyBoard, gameBoard);
 }
 

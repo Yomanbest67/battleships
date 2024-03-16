@@ -1,9 +1,13 @@
 import { randomNum } from './pcEnemy.js';
 import { Gameboard } from './gameboard.js';
+import { displayBoard } from './DOM.js';
 
 let turn = null;
 
 function setTurn(enemyBoard, playerBoard) {
+  displayBoard(enemyBoard, true);
+  displayBoard(playerBoard);
+
   turn === 'player' ? (turn = 'enemy') : (turn = 'player');
   setFunctionality(enemyBoard, playerBoard);
 }
@@ -33,16 +37,24 @@ function setFunctionality(enemyBoard, playerBoard) {
     }
 
     // Get random coordinate and attack.
-    const attackSpot = [randomNum(10), randomNum(10)]; // Hardcoded value;
+    let attackSpot = [randomNum(10), randomNum(10)]; // Hardcoded value;
+
+    while (
+      typeof playerBoard.board[attackSpot[0]][attackSpot[1]] === 'string'
+    ) {
+      attackSpot = [randomNum(10), randomNum(10)];
+    }
 
     playerBoard.receiveAttack(attackSpot[0], attackSpot[1]);
 
-    setTurn();
+    setTurn(enemyBoard, playerBoard);
   }
 
   const playerFunction = (square) => {
-    enemyBoard.receiveAttack(square.id[1], square.id[4]);
-    setTurn();
+    if (typeof enemyBoard.board[square.id[1]][square.id[4]] !== 'string') {
+      enemyBoard.receiveAttack(square.id[1], square.id[4]);
+      setTurn(enemyBoard, playerBoard);
+    }
   };
 }
 
