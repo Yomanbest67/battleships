@@ -1,6 +1,6 @@
 import Ship from './ship.js';
 
-export default class Gameboard {
+class Gameboard {
   constructor(size) {
     this.size = size;
     this.rows = size;
@@ -69,16 +69,94 @@ export default class Gameboard {
   }
 }
 
-// const gameBoard = new Gameboard(10);
-// const ship = new Ship(3);
-// const newShip = new Ship(2);
+function randomMap(board) {
+  const ships = [
+    { length: 5 },
+    { length: 4 },
+    { length: 3 },
+    { length: 3 },
+    { length: 2 },
+  ];
 
-// gameBoard.placeShip(ship, [0, 1], [0, 3]);
+  while (ships.length > 0) {
+    const currentShip = ships.shift();
+    tryPlacing(currentShip);
+  }
 
-// gameBoard.placeShip(newShip, [3, 1], [3, 2]);
+  function tryPlacing(currentShip) {
+    const randomCoord = [randomNum(board.size), randomNum(board.size)];
 
-// gameBoard.receiveAttack(5, 3);
+    // const location = board.board;
 
-// console.log(gameBoard.receiveAttack(0, 1));
+    if (board.board[randomCoord[0]][randomCoord[1]] === null) {
+      const emptySpaces = tryAllDirections(
+        ['right', 'left', 'up', 'down'],
+        randomCoord,
+        currentShip,
+      );
 
-// console.table(gameBoard.board);
+      if (emptySpaces) {
+        for (const index of emptySpaces) {
+          board.board[index[0]][index[1]] = new Ship(currentShip.length);
+        }
+      }
+    } else {
+      tryPlacing(currentShip);
+    }
+  }
+
+  function getNextIndices(coords, direction, size) {
+    const nextIndices = [];
+    const [x, y] = coords;
+
+    for (let i = 0; i < size; i++) {
+      let newX = x;
+      let newY = y;
+
+      if (direction === 'right') {
+        newY = y + i;
+      } else if (direction === 'left') {
+        newY = y - i;
+      } else if (direction === 'down') {
+        newX = x + i;
+      } else {
+        newX = x - i;
+      }
+
+      nextIndices.push([newX, newY]);
+    }
+
+    return nextIndices;
+  }
+
+  function tryDirection(direction, coords, ship) {
+    const nextIndices = getNextIndices(coords, direction, ship.length);
+
+    const isEmpty = (coords) => board.board[coords[0]][coords[1]] === null;
+
+    if (nextIndices.every(isEmpty)) {
+      return nextIndices;
+    }
+
+    return false;
+  }
+
+  function tryAllDirections(directions, coords, ship) {
+    if (directions.length === 0) {
+      return false;
+    }
+
+    const direction = directions.shift();
+
+    const nextIndices = tryDirection(direction, coords, ship);
+
+    if (nextIndices) return nextIndices;
+    return tryAllDirections(directions, coords, ship);
+  }
+
+  function randomNum(limit) {
+    return Math.floor(Math.random() * limit);
+  }
+}
+
+export { Gameboard, randomMap };

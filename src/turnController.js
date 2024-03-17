@@ -1,4 +1,3 @@
-import { randomNum } from './pcEnemy.js';
 import { Gameboard } from './gameboard.js';
 import { displayBoard, playerMessage } from './DOM.js';
 import Ship from './ship.js';
@@ -71,6 +70,10 @@ function checkVictory(board) {
   if (count === 0) return true;
 
   return false;
+}
+
+function randomNum(num) {
+  return Math.floor(Math.random() * num);
 }
 
 export { setTurn };

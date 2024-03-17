@@ -1,4 +1,3 @@
-import { driver } from './index.js';
 import Ship from './ship.js';
 
 function displayBoard(board, enemy = false) {
