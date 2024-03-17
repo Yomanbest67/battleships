@@ -44,8 +44,12 @@ function displayBoard(board, enemy = false) {
   }
 }
 
-function playerMessage(message) {
+function playerMessage(message, color) {
   const messageArea = document.querySelector('.playerMessage');
+
+  if (color) {
+    messageArea.style.color = color;
+  }
 
   messageArea.textContent = message;
 }

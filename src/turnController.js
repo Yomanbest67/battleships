@@ -47,7 +47,7 @@ function setFunctionality(enemyBoard, playerBoard) {
 
     playerBoard.receiveAttack(attackSpot[0], attackSpot[1]);
 
-    if (checkVictory(playerBoard)) playerMessage('You Lost!');
+    if (checkVictory(playerBoard)) playerMessage('You Lost!', 'red');
     else setTurn(enemyBoard, playerBoard);
   }
 
@@ -55,7 +55,7 @@ function setFunctionality(enemyBoard, playerBoard) {
     if (typeof enemyBoard.board[square.id[1]][square.id[4]] !== 'string') {
       enemyBoard.receiveAttack(square.id[1], square.id[4]);
 
-      if (checkVictory(enemyBoard)) playerMessage('You Win!');
+      if (checkVictory(enemyBoard)) playerMessage('You Win!', 'green');
       else setTurn(enemyBoard, playerBoard);
     }
   };
