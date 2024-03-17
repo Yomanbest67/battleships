@@ -115,7 +115,10 @@ function startGame(enemyBoard, gameBoard) {
 
     while (ships.length > 0) {
       const currentShip = ships.shift();
+      tryPlacing(currentShip);
+    }
 
+    function tryPlacing(currentShip) {
       const randomCoord = [
         randomNum(playerGameboard.size),
         randomNum(playerGameboard.size),
@@ -138,7 +141,7 @@ function startGame(enemyBoard, gameBoard) {
           }
         }
       } else {
-        // Generate new coords and try again.
+        tryPlacing(currentShip);
       }
     }
 

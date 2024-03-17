@@ -44,7 +44,10 @@ function createEnemyBoard2(enemyBoard) {
 
   while (ships.length > 0) {
     const currentShip = ships.shift();
+    tryPlacing(currentShip);
+  }
 
+  function tryPlacing(currentShip) {
     const randomCoord = [
       randomNum(enemyBoard.size),
       randomNum(enemyBoard.size),
@@ -65,7 +68,7 @@ function createEnemyBoard2(enemyBoard) {
         }
       }
     } else {
-      createEnemyBoard2(new Gameboard(10));
+      tryPlacing(currentShip);
     }
   }
 
