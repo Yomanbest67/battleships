@@ -27,9 +27,11 @@ function displayBoard(board, enemy = false) {
           break;
         case 'X':
           boardSquare.textContent = 'X';
+          boardSquare.style.color = 'red';
           break;
         case 'O':
           boardSquare.textContent = 'O';
+          boardSquare.style.color = 'yellow';
           break;
         default:
           if (enemy) {
